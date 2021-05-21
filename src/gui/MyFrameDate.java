@@ -8,8 +8,8 @@ import java.util.Date;
 import java.util.Random;
 
 public class MyFrameDate extends JFrame {
-    JLabel dateLabel,randomPickLabel;
-
+    JLabel dateLabel,randomPickLabel,resultLable;
+    JTextField t1;
     public MyFrameDate() {
         this.setBounds(100, 100, 300, 300);
         this.setVisible(true);
@@ -34,6 +34,12 @@ public class MyFrameDate extends JFrame {
         add(b2);
         randomPickLabel = new JLabel("点击显示学号");
         add(randomPickLabel);
+        t1=new JTextField();
+        add(t1);
+        JButton b3=new JButton("求平方根");
+        add(b3);
+        resultLable=new JLabel("求平方根结果");
+        add(resultLable);
 
         //添加监视器
         ActionListener Listener1 = new ActionListener() {
@@ -50,6 +56,13 @@ public class MyFrameDate extends JFrame {
             }
         };
         b2.addActionListener(Listener2);
+        ActionListener Listener3=new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                caculation();
+            }
+        };
+        b3.addActionListener(Listener3);
     }
     public void showDate(){
         Date nowTime=new Date();
@@ -67,5 +80,10 @@ public class MyFrameDate extends JFrame {
         else{
             randomPickLabel.setText("2020811701"+i);
         }
+    }
+    public void caculation(){
+        double d=Double.parseDouble(t1.getText());
+        double result=Math.sqrt(d);
+        resultLable.setText(String.valueOf(result));
     }
 }
